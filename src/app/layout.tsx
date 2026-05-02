@@ -1,4 +1,7 @@
-import Link from "next/link";
+import "./globals.css";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
+import Container from "@/components/layout/container";
 
 export default function RootLayout({
   children,
@@ -7,14 +10,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <nav className="p-4 border-b flex gap-4">
-          <Link href="/">Home</Link>
-          <Link href="/articles">Articles</Link>
-          <Link href="/admin/articles">Admin</Link>
-        </nav>
+      <body className="flex flex-col min-h-screen">
+        <Navbar />
 
-        <main className="p-6">{children}</main>
+        <main className="flex-1">
+          <Container>{children}</Container>
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
