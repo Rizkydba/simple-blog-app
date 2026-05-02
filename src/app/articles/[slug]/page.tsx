@@ -7,6 +7,9 @@ import { getArticles } from "@/services/article.service";
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate } from "@/lib/utils";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoShareSocialSharp, IoLogoWhatsapp, IoLogoFacebook } from "react-icons/io5";
+import { RiTwitterXLine } from "react-icons/ri";
 
 export default function ArticleDetailPage() {
   const params = useParams();
@@ -55,13 +58,65 @@ export default function ArticleDetailPage() {
 
   return (
   <article className="max-w-4xl mx-auto space-y-6 pt-6 pb-20">
+    <div className="flex flex-row justify-between">
     {/* BACK */}
     <Link
       href="/articles"
-      className="text-sm text-gray-500 hover:underline inline-block"
+      className="inline-flex fler-row gap-2 items-center text-sm text-gray-500 hover:underline inline-block"
     >
-      ← Back to Articles
+      <IoIosArrowBack /> Back to Articles
     </Link>
+    {/* META */}
+      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
+        <span>
+          {formatDate(article.createdAt)}
+        </span>
+
+        <span>•</span>
+
+        {/* SHARE */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={copyLink}
+            className="text-lg"
+          >
+            <IoShareSocialSharp className="hover:text-black transition-colors"/>
+          </button>
+
+          <a
+            href={shareLinks.whatsapp}
+            target="_blank"
+            className="text-lg"
+          >
+            <IoLogoWhatsapp className="hover:text-[#25D366] transition-colors"/>
+          </a>
+
+          <a
+            href={shareLinks.twitter}
+            target="_blank"
+            className="text-lg"
+          >
+            <RiTwitterXLine className="hover:text-black transition-colors"/>
+          </a>
+
+          <a
+            href={shareLinks.facebook}
+            target="_blank"
+            className="text-lg"
+          >
+            <IoLogoFacebook className="hover:text-[#1877F2] transition-colors"/>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* TITLE */}
+    <div className="space-y-3">
+      <h1 className="text-4xl font-bold leading-tight">
+        {article.title}
+      </h1>
+
+    </div>
 
     {/* THUMBNAIL */}
     {article.thumbnail && (
@@ -75,56 +130,6 @@ export default function ArticleDetailPage() {
         />
       </div>
     )}
-
-    {/* TITLE */}
-    <div className="space-y-3">
-      <h1 className="text-4xl font-bold leading-tight">
-        {article.title}
-      </h1>
-
-      {/* META */}
-      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
-        <span>
-          {formatDate(article.createdAt)}
-        </span>
-
-        <span>•</span>
-
-        {/* SHARE */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={copyLink}
-            className="hover:underline"
-          >
-            Copy Link
-          </button>
-
-          <a
-            href={shareLinks.whatsapp}
-            target="_blank"
-            className="hover:underline"
-          >
-            WhatsApp
-          </a>
-
-          <a
-            href={shareLinks.twitter}
-            target="_blank"
-            className="hover:underline"
-          >
-            Twitter/X
-          </a>
-
-          <a
-            href={shareLinks.facebook}
-            target="_blank"
-            className="hover:underline"
-          >
-            Facebook
-          </a>
-        </div>
-      </div>
-    </div>
 
     {/* CONTENT */}
     <div

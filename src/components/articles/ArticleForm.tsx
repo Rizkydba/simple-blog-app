@@ -48,7 +48,7 @@ export default function ArticleForm({
         />
       </div>
 
-      {/*SLUG*/}
+      {/* SLUG */}
         <div>
             <label className="block mb-1">Slug</label>
 
@@ -80,6 +80,7 @@ export default function ArticleForm({
 
                 reader.readAsDataURL(file);
                 }}
+                required
             />
             {thumbnail && (
             <img
@@ -93,14 +94,6 @@ export default function ArticleForm({
       {/* CONTENT */}
       <div>
         <label className="block mb-1">Content</label>
-
-        {/*<textarea
-          className="w-full border p-2 rounded-md"
-          rows={6}
-          value={content}
-          onChange={(e) => onContentChange(e.target.value)}
-          required
-        />*/}
         <RichTextEditor
             content={content}
             onChange={onContentChange}
