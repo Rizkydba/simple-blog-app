@@ -80,7 +80,7 @@ export default function ArticleForm({
 
                 reader.readAsDataURL(file);
                 }}
-                required
+                required={!thumbnail}
             />
             {thumbnail && (
             <img
