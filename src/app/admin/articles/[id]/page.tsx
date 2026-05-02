@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ArticleForm from "@/components/articles/ArticleForm";
 import Link from "next/link";
+import { IoIosArrowBack } from "react-icons/io";
 
 import { Article } from "@/types/article";
 import {
@@ -61,12 +62,14 @@ export default function EditArticlePage() {
   }
 
   return (
-    <div className="max-w-2xl space-y-6 pt-8 pb-20">
-      <h1 className="text-2xl font-bold">Edit Article</h1>
-      <Link
-        href="/admin/articles" className="text-sm text-gray-500 hover:underline">
-        ← Back
-      </Link>
+    <div className="flex flex-col gap-8 pt-8 pb-20 px-4 md:px-8 lg:px-[0px]">
+      <div className="flex flex-row flex-nowrap justify-between">
+            <h1 className="text-2xl font-bold">Update Article</h1>
+            <Link
+                href="/admin/articles" className="inline-flex fler-row gap-2 items-center text-sm text-gray-500 hover:underline">
+                <IoIosArrowBack /> Back to Admin
+            </Link>
+        </div>
 
       <ArticleForm
         title={title}
@@ -80,7 +83,7 @@ export default function EditArticlePage() {
 
         onSubmit={handleSubmit}
 
-        submitLabel="Update Article"
+        submitLabel="Update"
       />
     </div>
   );

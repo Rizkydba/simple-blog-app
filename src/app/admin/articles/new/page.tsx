@@ -6,6 +6,7 @@ import { createArticle } from "@/services/article.service";
 import { generateSlug } from "@/lib/utils";
 import ArticleForm from "@/components/articles/ArticleForm";
 import Link from "next/link";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function CreateArticlePage() {
   const router = useRouter();
@@ -33,12 +34,14 @@ export default function CreateArticlePage() {
   };
 
   return (
-    <div className="max-w-2xl space-y-6 pt-8 pb-20">
-      <h1 className="text-2xl font-bold">Create Article</h1>
-      <Link
-        href="/admin/articles" className="text-sm text-gray-500 hover:underline">
-        ← Back
-      </Link>
+    <div className="flex flex-col gap-8 pt-8 pb-20 px-4 md:px-8 lg:px-[0px]">
+        <div className="flex flex-row flex-nowrap justify-between">
+            <h1 className="text-2xl font-bold">Add New Article</h1>
+            <Link
+                href="/admin/articles" className="inline-flex fler-row gap-2 items-center text-sm text-gray-500 hover:underline">
+                <IoIosArrowBack /> Back to Admin
+            </Link>
+        </div>
 
       <ArticleForm
             title={title}
@@ -52,7 +55,7 @@ export default function CreateArticlePage() {
 
             onSubmit={handleSubmit}
 
-            submitLabel="Create Article"
+            submitLabel="Save"
         />
     </div>
   );

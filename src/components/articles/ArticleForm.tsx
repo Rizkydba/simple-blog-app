@@ -34,7 +34,7 @@ export default function ArticleForm({
   submitLabel,
 }: ArticleFormProps) {
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-6">
       {/* TITLE */}
       <div>
         <label className="block mb-1">Title</label>

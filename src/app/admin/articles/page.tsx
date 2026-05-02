@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getArticles, deleteArticle } from "@/services/article.service";
 import { Article } from "@/types/article";
 import Link from "next/link";
+import { BsTrash3 } from "react-icons/bs";
+import { FaCirclePlus } from "react-icons/fa6";
 
 export default function AdminArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -64,9 +66,9 @@ export default function AdminArticlesPage() {
 
         <Link
           href="/admin/articles/new"
-          className="bg-black text-white px-4 py-2 rounded-md text-sm hover:opacity-90 transition"
+          className="flex flex-row gap-2 items-center bg-black text-white px-4 py-2 rounded-md text-sm hover:opacity-90 transition"
         >
-          Add New
+          Add New <FaCirclePlus />
         </Link>
       </div>
 
@@ -147,8 +149,9 @@ export default function AdminArticlesPage() {
                     <button
                       onClick={() => handleDelete(article.id)}
                       className="text-red-500"
+                      title="Delete Articles"
                     >
-                      Delete
+                      <BsTrash3 />
                     </button>
                   </td>
                 </tr>
