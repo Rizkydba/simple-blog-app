@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 
@@ -10,6 +10,9 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isHomePage = pathname === "/";
 
   const navLinks = [
     {
@@ -25,16 +28,38 @@ export default function Navbar() {
       href: "/admin/articles",
     },
   ];
+  
+  useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 40);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
 
   return (
     <>
       {/* NAVBAR */}
-      <nav className="border-b bg-white sticky top-0 z-50">
+      <nav
+          className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+            isHomePage && !isScrolled
+              ? "bg-transparent border-transparent"
+              : "bg-white border-b"
+          }`}
+        >
         <div className="max-w-6xl mx-auto h-16 px-4 xl:px-[0px] md:px-6 flex items-center justify-between">
           {/* LOGO */}
           <Link
             href="/"
-            className="text-lg font-bold"
+            className={`text-lg font-bold transition ${
+  isHomePage && !isScrolled
+    ? "text-white"
+    : "text-black"
+}`}
           >
             SimpleBlog
           </Link>
@@ -50,10 +75,12 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`transition hover:opacity-70 ${
-                    isActive
-                      ? "font-semibold text-black"
-                      : "text-gray-500"
-                  }`}
+  isHomePage && !isScrolled
+    ? "text-white"
+    : isActive
+    ? "font-semibold text-black"
+    : "text-gray-500"
+}`}
                 >
                   {link.label}
                 </Link>
@@ -66,7 +93,11 @@ export default function Navbar() {
             {/* CONTACT DESKTOP */}
             <Link
               href="#"
-              className="hidden md:inline-block text-sm border px-4 py-2 rounded-md hover:bg-black hover:text-white transition"
+              className={`hidden md:inline-block text-sm border px-4 py-2 rounded-md transition ${
+  isHomePage && !isScrolled
+    ? "border-white text-white hover:bg-white hover:text-black"
+    : "border-black text-black hover:bg-black hover:text-white"
+}`}
             >
               Contact Us
             </Link>
@@ -74,7 +105,11 @@ export default function Navbar() {
             {/* MOBILE BUTTON */}
             <button
               onClick={() => setIsOpen(true)}
-              className="md:hidden text-2xl"
+              className={`md:hidden text-2xl transition ${
+  isHomePage && !isScrolled
+    ? "text-white"
+    : "text-black"
+}`}
             >
               <HiOutlineMenu />
             </button>

@@ -50,7 +50,7 @@ export default function ArticlesPage() {
     );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 xl:px-[0px] md:px-6 space-y-6 pt-8 pb-20">
+    <div className="max-w-6xl mx-auto px-4 xl:px-[0px] md:px-6 space-y-6 pt-24 pb-20">
     <div className="flex flex-row justify-between items-center">
       <h1 className="text-2xl font-bold">Articles</h1>
 
