@@ -5,11 +5,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import {
-  FaRocket,
-  FaUsers,
-  FaLightbulb,
-} from "react-icons/fa";
+import { ImRocket } from "react-icons/im";
+import { PiBridgeLight } from "react-icons/pi";
+import { LuCrown } from "react-icons/lu";
 
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -35,22 +33,22 @@ export default function HomePage() {
 
   const visionCards = [
     {
-      icon: <FaRocket />,
-      title: "Innovation",
+      icon: <ImRocket />,
+      title: "Accelerate Scale",
       description:
-        "Continuously building modern and scalable digital experiences.",
+        "To provide the resources, expertise, and momentum needed to transform early stage ventures into sustainable, high impact enterprises.",
     },
     {
-      icon: <FaUsers />,
-      title: "Collaboration",
+      icon: <PiBridgeLight />,
+      title: "Bridge Ecosystems",
       description:
-        "Working closely with teams and clients to achieve impactful results.",
+        "To connect our portfolio companies with a world-class network of partners, talent, and strategic investors across the globe.",
     },
     {
-      icon: <FaLightbulb />,
-      title: "Creativity",
+      icon: <LuCrown />,
+      title: "Champion Innovation",
       description:
-        "Transforming ideas into intuitive and engaging products.",
+        "To foster a culture of radical thinking and ethical growth that leads the next era of global innovation.",
     },
   ];
 
@@ -78,15 +76,13 @@ export default function HomePage() {
         {/* CONTENT */}
         <div className="relative z-10 h-full flex items-center">
           <div className="max-w-6xl mx-auto px-4 md:px-6 text-white">
-            <div className="max-w-3xl space-y-6">
+            <div className="inline-flex flex-col max-w-3xl space-y-6 text-center">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                Empowering Disruptors to Scale Beyond the Horizon.
+                Empowering Disruptors to Scale Beyond Horizon
               </h1>
 
-              <p className="text-lg text-gray-200">
-                We are a modern company focused on delivering
-                high quality web applications and digital
-                experiences.
+              <p className="w-xs text-lg text-gray-200">
+                We provide the momentum to propel you to lead the next era of innovation.
               </p>
             </div>
           </div>
@@ -94,16 +90,15 @@ export default function HomePage() {
       </section>
 
       {/* ABOUT */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
-        <div className="max-w-3xl space-y-4">
+      <section>
+        <div className="max-w-6xl px-4 md:px-6 py-20 space-y-4 mx-auto">
           <h2 className="text-3xl font-bold">
             About Us
           </h2>
 
           <p className="text-gray-600 leading-relaxed">
-            Our company specializes in building scalable,
-            maintainable, and modern web applications using
-            the latest technologies and best practices.
+            we believe that the next era of human progress is being built by those who dare to challenge the status quo. We are a venture capital firm dedicated to identifying, funding, and scaling the world's most ambitious disruptors. 
+            While capital is the fuel, our partnership is the engine. We bridge the gap between groundbreaking innovation and global market dominance by providing founders with more than just financial support—we provide a launchpad of strategic mentorship, an elite global network, and the operational momentum required to scale beyond the horizon.
           </p>
         </div>
       </section>
@@ -117,8 +112,7 @@ export default function HomePage() {
             </h2>
 
             <p className="text-gray-600">
-              Building impactful digital products through
-              innovation and collaboration.
+              Become the definitive global platform that empowers the architects of the future to redefine every industry and improve the human experience through technology.
             </p>
           </div>
 

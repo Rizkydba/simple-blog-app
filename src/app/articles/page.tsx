@@ -18,9 +18,16 @@ export default function ArticlesPage() {
   const articlesPerPage = 6;
 
   useEffect(() => {
-    const data = getArticles();
-    setArticles(data);
-  }, []);
+  const data = getArticles();
+
+  const sorted = [...data].sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() -
+      new Date(a.createdAt).getTime()
+  );
+
+  setArticles(sorted);
+}, []);
 
     const filteredArticles = articles.filter((article) => {
     const keyword = search.toLowerCase();
