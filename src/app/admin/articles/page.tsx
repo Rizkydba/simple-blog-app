@@ -7,10 +7,23 @@ import Link from "next/link";
 
 export default function AdminArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [search, setSearch] = useState("");
+
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const loadArticles = () => {
-    setArticles(getArticles());
-  };
+  const data = getArticles();
+
+  const sorted = data.sort(
+    (a, b) =>
+      new Date(b.createdAt).getTime() -
+      new Date(a.createdAt).getTime()
+    );
+
+    setArticles(sorted);
+    };
 
   useEffect(() => {
     loadArticles();
@@ -24,8 +37,27 @@ export default function AdminArticlesPage() {
     loadArticles();
   };
 
+  const filteredArticles = articles.filter((article) =>
+  article.title
+    .toLowerCase()
+    .includes(search.toLowerCase())
+    );
+
+    const totalPages = Math.ceil(
+    filteredArticles.length / itemsPerPage
+    );
+
+    const startIndex =
+    (currentPage - 1) * itemsPerPage;
+
+    const paginatedArticles =
+    filteredArticles.slice(
+        startIndex,
+        startIndex + itemsPerPage
+    );
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pt-8 pb-14 px-4 md:px-8 lg:px-[0px]">
       {/* HEADER */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Manage Articles</h1>
@@ -50,19 +82,49 @@ export default function AdminArticlesPage() {
             </p>
         </div>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="flex flex-col gap-4 overflow-x-auto">
+            <div className="flex flex-row gap-4  justify-between">
+                {/* SEARCH */}
+                <input
+                    type="text"
+                    placeholder="Search articles..."
+                    value={search}
+                    onChange={(e) => {
+                    setSearch(e.target.value);
+                    setCurrentPage(1);
+                    }}
+                    className="border rounded-md px-3 py-2 w-full md:max-w-sm"
+                />
+
+                {/* LIMIT */}
+                <select
+                    value={itemsPerPage}
+                    onChange={(e) => {
+                    setItemsPerPage(Number(e.target.value));
+                    setCurrentPage(1);
+                    }}
+                    className="border rounded-md px-3 py-2 w-fit"
+                >
+                    <option value={10}>10</option>
+                    <option value={15}>15</option>
+                    <option value={20}>20</option>
+                    <option value={50}>50</option>
+                </select>
+            </div>
+
+         {/* TABEL */}
           <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
             <thead className="bg-gray-50 text-left text-sm">
               <tr>
                 <th className="p-3 border">Articels Title</th>
                 <th className="p-3 border">Created</th>
                 <th className="p-3 border">Updated</th>
-                <th className="p-3 border">Action</th>
+                <th className="p-3 border text-center">Action</th>
               </tr>
             </thead>
 
             <tbody>
-              {articles.map((article) => (
+              {paginatedArticles.map((article) => (
                 <tr key={article.id} className="text-sm hover:bg-gray-50">
                   <td className="p-3 border">
                         <Link
@@ -80,7 +142,7 @@ export default function AdminArticlesPage() {
                     {new Date(article.updatedAt).toLocaleDateString()}
                   </td>
 
-                  <td className="p-3 border space-x-2">
+                  <td className="p-3 border space-x-2 text-center">
                     {/* DELETE */}
                     <button
                       onClick={() => handleDelete(article.id)}
@@ -93,6 +155,27 @@ export default function AdminArticlesPage() {
               ))}
             </tbody>
           </table>
+
+          {/* PAGINATION */}
+          <div className="flex justify-end items-center gap-2 mt-4">
+            {Array.from({ length: totalPages }).map((_, index) => {
+                const page = index + 1;
+
+                return (
+                <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-1 rounded-md border text-sm ${
+                    currentPage === page
+                        ? "bg-black text-white"
+                        : "bg-white"
+                    }`}
+                >
+                    {page}
+                </button>
+                );
+            })}
+            </div>
         </div>
       )}
     </div>

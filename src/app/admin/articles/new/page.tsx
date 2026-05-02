@@ -33,7 +33,7 @@ export default function CreateArticlePage() {
   };
 
   return (
-    <div className="max-w-2xl space-y-6">
+    <div className="max-w-2xl space-y-6 pt-8 pb-20">
       <h1 className="text-2xl font-bold">Create Article</h1>
       <Link
         href="/admin/articles" className="text-sm text-gray-500 hover:underline">
