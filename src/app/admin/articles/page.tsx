@@ -32,7 +32,7 @@ export default function AdminArticlesPage() {
 
         <Link
           href="/admin/articles/new"
-          className="bg-black text-white px-4 py-2 rounded-md text-sm"
+          className="bg-black text-white px-4 py-2 rounded-md text-sm hover:opacity-90 transition"
         >
           Add New
         </Link>
@@ -40,11 +40,19 @@ export default function AdminArticlesPage() {
 
       {/* EMPTY STATE */}
       {articles.length === 0 ? (
-        <p className="text-gray-500">No articles yet.</p>
+        <div className="border border-dashed rounded-lg p-10 text-center">
+            <h2 className="text-lg font-semibold">
+                No articles yet
+            </h2>
+
+            <p className="text-gray-500 mt-2">
+                Start by creating your first article.
+            </p>
+        </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border border-gray-200">
-            <thead className="bg-gray-100 text-left text-sm">
+          <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
+            <thead className="bg-gray-50 text-left text-sm">
               <tr>
                 <th className="p-3 border">Articels Title</th>
                 <th className="p-3 border">Created</th>
@@ -55,7 +63,7 @@ export default function AdminArticlesPage() {
 
             <tbody>
               {articles.map((article) => (
-                <tr key={article.id} className="text-sm">
+                <tr key={article.id} className="text-sm hover:bg-gray-50">
                   <td className="p-3 border">
                         <Link
                             href={`/admin/articles/${article.id}`}

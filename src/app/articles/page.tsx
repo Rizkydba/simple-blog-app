@@ -24,7 +24,7 @@ export default function ArticlesPage() {
           {articles.map((article) => (
             <div
               key={article.id}
-              className="border p-4 rounded-md space-y-2"
+              className="border p-4 rounded-lg space-y-2 hover:shadow-sm transition"
             >
               <h2 className="text-xl font-semibold">
                 {article.title}
