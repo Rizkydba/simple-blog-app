@@ -41,7 +41,7 @@ export default function ArticleForm({
 
         <input
           type="text"
-          className="w-full border p-2 rounded-md"
+          className="w-full border p-2 rounded-md outline-none"
           value={title}
           onChange={(e) => onTitleChange(e.target.value)}
           required

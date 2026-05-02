@@ -10,20 +10,82 @@ import Image from "next/image";
 export default function ArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
 
+  const [search, setSearch] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const articlesPerPage = 6;
+
   useEffect(() => {
     const data = getArticles();
     setArticles(data);
   }, []);
 
+    const filteredArticles = articles.filter((article) => {
+    const keyword = search.toLowerCase();
+
+    const titleMatch = article.title
+        .toLowerCase()
+        .includes(keyword);
+
+    const contentMatch = stripHtml(article.content)
+        .toLowerCase()
+        .includes(keyword);
+
+    return titleMatch || contentMatch;
+    });
+
+    const totalPages = Math.ceil(
+    filteredArticles.length / articlesPerPage
+    );
+
+    const startIndex =
+    (currentPage - 1) * articlesPerPage;
+
+    const paginatedArticles =
+    filteredArticles.slice(
+        startIndex,
+        startIndex + articlesPerPage
+    );
+
   return (
     <div className="space-y-6 pt-8 pb-20">
+    <div className="flex flex-row justify-between items-center">
       <h1 className="text-2xl font-bold">Articles</h1>
 
-      {articles.length === 0 ? (
-        <p className="text-gray-500">No articles yet.</p>
+      {/* SEARCH */}
+      <div className="relative max-w-md">
+        <input
+            type="text"
+            placeholder="Search articles..."
+            value={search}
+            onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1);
+            }}
+            className="w-full border rounded-md px-4 py-2 pr-10 outline-none"
+        />
+
+        {/* CLEAR BUTTON */}
+        {search && (
+            <button
+            onClick={() => {
+                setSearch("");
+                setCurrentPage(1);
+            }}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition"
+            >
+            ✕
+            </button>
+        )}
+        </div>
+    </div>
+
+      {filteredArticles.length === 0 ? (
+        <div className="w-full min-h-screen flex flex-col justify-center text-gray-500 text-center">No articles available.</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {articles.map((article) => (
+          {paginatedArticles.map((article) => (
             <div key={article.id} className="grid grid-flow-col grid-rows-2 overflow-hidden border rounded-xl hover:shadow-md transition bg-white">
               {/* THUMBNAIL */}
                 {article.thumbnail && (
@@ -73,6 +135,27 @@ export default function ArticlesPage() {
           ))}
         </div>
       )}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-2 pt-6">
+            {Array.from({ length: totalPages }).map((_, index) => {
+            const page = index + 1;
+
+            return (
+                <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-4 py-2 rounded-md border text-sm transition ${
+                    currentPage === page
+                    ? "bg-black text-white"
+                    : "bg-white hover:bg-gray-100"
+                }`}
+                >
+                {page}
+                </button>
+            );
+            })}
+        </div>
+        )}
     </div>
   );
 }

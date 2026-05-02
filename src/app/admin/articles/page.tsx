@@ -87,6 +87,7 @@ export default function AdminArticlesPage() {
         <div className="flex flex-col gap-4 overflow-x-auto">
             <div className="flex flex-row gap-4  justify-between">
                 {/* SEARCH */}
+                <div className="relative max-w-md">
                 <input
                     type="text"
                     placeholder="Search articles..."
@@ -95,8 +96,22 @@ export default function AdminArticlesPage() {
                     setSearch(e.target.value);
                     setCurrentPage(1);
                     }}
-                    className="border rounded-md px-3 py-2 w-full md:max-w-sm"
+                    className="w-full border rounded-md px-4 py-2 pr-10 outline-none"
                 />
+
+                {/* CLEAR BUTTON */}
+                {search && (
+                    <button
+                    onClick={() => {
+                        setSearch("");
+                        setCurrentPage(1);
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition"
+                    >
+                    ✕
+                    </button>
+                )}
+                </div>
 
                 {/* LIMIT */}
                 <select
