@@ -66,7 +66,7 @@ export default function AdminArticlesPage() {
 
         <Link
           href="/admin/articles/new"
-          className="flex flex-row gap-2 items-center bg-black text-white px-4 py-2 rounded-md text-sm hover:opacity-90 transition"
+          className="flex flex-row gap-2 items-center bg-[#FF7518] text-white px-4 py-2 rounded-md text-sm hover:opacity-90 transition"
         >
           Add New <FaCirclePlus />
         </Link>
@@ -142,11 +142,11 @@ export default function AdminArticlesPage() {
 
             <tbody>
               {paginatedArticles.map((article) => (
-                <tr key={article.id} className="text-sm hover:bg-[#d3dde8]">
+                <tr key={article.id} className="text-sm hover:bg-[#f8f8f8]">
                   <td className="p-3 border">
                         <Link
                             href={`/admin/articles/${article.id}`}
-                            className="text-blue-600 hover:underline">
+                            className="text-[#FF7518] hover:underline">
                             {article.title}
                         </Link>
                   </td>

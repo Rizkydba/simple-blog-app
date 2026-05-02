@@ -55,11 +55,7 @@ export default function Navbar() {
           {/* LOGO */}
           <Link
             href="/"
-            className={`text-lg font-bold transition ${
-  isHomePage && !isScrolled
-    ? "text-white"
-    : "text-black"
-}`}
+            className={`text-lg font-bold transition ${isHomePage && !isScrolled ? "text-white" : "text-black" }`}
           >
             SimpleBlog
           </Link>
@@ -74,13 +70,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`transition hover:opacity-70 ${
-  isHomePage && !isScrolled
-    ? "text-white"
-    : isActive
-    ? "font-semibold text-black"
-    : "text-gray-500"
-}`}
+                  className={`transition hover:opacity-70 ${isHomePage && !isScrolled ? "text-white" : isActive ? "font-semibold text-black" : "text-gray-500" }`}
                 >
                   {link.label}
                 </Link>
@@ -93,11 +83,7 @@ export default function Navbar() {
             {/* CONTACT DESKTOP */}
             <Link
               href="#"
-              className={`hidden md:inline-block text-sm border px-4 py-2 rounded-md transition ${
-  isHomePage && !isScrolled
-    ? "border-white text-white hover:bg-white hover:text-black"
-    : "border-black text-black hover:bg-black hover:text-white"
-}`}
+              className={`hidden md:inline-block text-sm border px-4 py-2 rounded-md transition ${ isHomePage && !isScrolled ? "border-white text-white hover:bg-white hover:text-black" : "border-black text-black hover:bg-black hover:text-white" }`}
             >
               Contact Us
             </Link>
@@ -105,11 +91,7 @@ export default function Navbar() {
             {/* MOBILE BUTTON */}
             <button
               onClick={() => setIsOpen(true)}
-              className={`md:hidden text-2xl transition ${
-  isHomePage && !isScrolled
-    ? "text-white"
-    : "text-black"
-}`}
+              className={`md:hidden text-2xl transition ${ isHomePage && !isScrolled ? "text-white" : "text-black" }`}
             >
               <HiOutlineMenu />
             </button>

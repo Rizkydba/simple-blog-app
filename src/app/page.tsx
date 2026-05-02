@@ -156,7 +156,7 @@ export default function HomePage() {
 
             <Link
               href="/articles"
-              className="inline-flex items-center gap-2 text-[#0000aa]"
+              className="inline-flex items-center gap-2 text-[#FF7518]"
             >
               Explore More
               <IoIosArrowForward />
@@ -192,7 +192,7 @@ export default function HomePage() {
                   <div className="flex flex-col space-y-3">
                     <Link
                       href={`/articles/${article.slug}`}
-                      className="hover:text-[#0000aa]"
+                      className="hover:text-[#FF7518]"
                     >
                       <h2 className="text-xl font-semibold line-clamp-2">
                         {article.title}
@@ -208,7 +208,7 @@ export default function HomePage() {
 
                   <Link
                     href={`/articles/${article.slug}`}
-                    className="group inline-flex items-center text-sm text-[#0000aa]"
+                    className="group inline-flex items-center text-sm text-[#FF7518]"
                   >
                     Read More
 

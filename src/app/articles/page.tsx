@@ -112,7 +112,7 @@ export default function ArticlesPage() {
                         {/* TITLE */}
                         <Link
                         href={`/articles/${article.slug}`}
-                        className="inline-block text-sm text-black hover:text-[#0000aa]"
+                        className="inline-block text-sm text-black hover:text-[#FF7518]"
                         >
                         <h2 className="text-xl font-semibold line-clamp-2">
                         {article.title}
@@ -127,7 +127,7 @@ export default function ArticlesPage() {
 
                     <Link
                     href={`/articles/${article.slug}`}
-                    className="group inline-flex flex-row items-center inline-block text-sm text-[#0000aa]"
+                    className="group inline-flex flex-row items-center inline-block text-sm text-[#FF7518]"
                     >
                     Read More <IoIosArrowForward className="transition-all duration-300 group-hover:ml-2"/>
                     </Link>
