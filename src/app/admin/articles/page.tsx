@@ -59,7 +59,7 @@ export default function AdminArticlesPage() {
     );
 
   return (
-    <div className="space-y-6 pt-8 pb-14">
+    <div className="max-w-6xl mx-auto px-4 xl:px-[0px] md:px-6 space-y-6 pt-8 pb-14">
       {/* HEADER */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Manage Articles</h1>

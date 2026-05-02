@@ -57,7 +57,7 @@ export default function ArticleDetailPage() {
   }
 
   return (
-  <article className="mx-auto space-y-6 pt-6 pb-20">
+  <article className="max-w-6xl mx-auto px-4 xl:px-[0px] md:px-6 space-y-6 pt-6 pb-20">
     <div className="flex flex-row justify-between">
     {/* BACK */}
     <Link
