@@ -12,15 +12,19 @@ export default function CreateArticlePage() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+
+  const slug = generateSlug(title);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const newArticle = {
-      id: crypto.randomUUID(),
-      title,
-      slug: generateSlug(title),
-      content,
+        id: crypto.randomUUID(),
+        title,
+        slug,
+        thumbnail,
+        content,
     };
 
     createArticle(newArticle);
@@ -37,13 +41,19 @@ export default function CreateArticlePage() {
       </Link>
 
       <ArticleForm
-        title={title}
-        content={content}
-        onTitleChange={setTitle}
-        onContentChange={setContent}
-        onSubmit={handleSubmit}
-        submitLabel="Create Article"
-      />
+            title={title}
+            slug={slug}
+            thumbnail={thumbnail}
+            content={content}
+
+            onTitleChange={setTitle}
+            onThumbnailChange={setThumbnail}
+            onContentChange={setContent}
+
+            onSubmit={handleSubmit}
+
+            submitLabel="Create Article"
+        />
     </div>
   );
 }

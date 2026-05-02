@@ -23,6 +23,9 @@ export default function EditArticlePage() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+
+  const slug = generateSlug(title);
 
   useEffect(() => {
     const foundArticle = getArticleById(id);
@@ -31,6 +34,9 @@ export default function EditArticlePage() {
       setArticle(foundArticle);
       setTitle(foundArticle.title);
       setContent(foundArticle.content);
+      setThumbnail(foundArticle.thumbnail);
+
+      const slug = generateSlug(title);
     }
   }, [id]);
 
@@ -42,7 +48,8 @@ export default function EditArticlePage() {
     updateArticle({
       ...article,
       title,
-      slug: generateSlug(title),
+      slug,
+      thumbnail,
       content,
     });
 
@@ -63,10 +70,16 @@ export default function EditArticlePage() {
 
       <ArticleForm
         title={title}
+        slug={slug}
+        thumbnail={thumbnail}
         content={content}
+
         onTitleChange={setTitle}
+        onThumbnailChange={setThumbnail}
         onContentChange={setContent}
+
         onSubmit={handleSubmit}
+
         submitLabel="Update Article"
       />
     </div>
