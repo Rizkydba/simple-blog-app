@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ArticleForm from "@/components/articles/ArticleForm";
+import Link from "next/link";
 
 import { Article } from "@/types/article";
 import {
@@ -55,6 +56,10 @@ export default function EditArticlePage() {
   return (
     <div className="max-w-2xl space-y-6">
       <h1 className="text-2xl font-bold">Edit Article</h1>
+      <Link
+        href="/admin/articles" className="text-sm text-gray-500 hover:underline">
+        ← Back
+      </Link>
 
       <ArticleForm
         title={title}

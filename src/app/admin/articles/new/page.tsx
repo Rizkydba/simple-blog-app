@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { createArticle } from "@/services/article.service";
 import { generateSlug } from "@/lib/utils";
 import ArticleForm from "@/components/articles/ArticleForm";
+import Link from "next/link";
 
 export default function CreateArticlePage() {
   const router = useRouter();
@@ -30,6 +31,10 @@ export default function CreateArticlePage() {
   return (
     <div className="max-w-2xl space-y-6">
       <h1 className="text-2xl font-bold">Create Article</h1>
+      <Link
+        href="/admin/articles" className="text-sm text-gray-500 hover:underline">
+        ← Back
+      </Link>
 
       <ArticleForm
         title={title}

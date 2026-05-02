@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "@/services/article.service";
 import { Article } from "@/types/article";
 import Link from "next/link";
+import { formatDate } from "@/lib/utils";
 
 export default function ArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -31,7 +32,7 @@ export default function ArticlesPage() {
               </h2>
 
               <p className="text-gray-500 text-sm">
-                {new Date(article.createdAt).toLocaleDateString()}
+                {formatDate(article.createdAt)}
               </p>
 
               <p className="text-gray-700 line-clamp-2">

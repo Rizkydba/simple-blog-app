@@ -6,3 +6,6 @@ export const generateSlug = (title: string): string => {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 };
+export const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString();
+};

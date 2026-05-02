@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Article } from "@/types/article";
 import { getArticles } from "@/services/article.service";
+import Link from "next/link";
 
 export default function ArticleDetailPage() {
   const params = useParams();
@@ -29,6 +30,10 @@ export default function ArticleDetailPage() {
 
   return (
     <article className="max-w-3xl space-y-4">
+      <Link
+        href="/articles" className="text-sm text-gray-500 hover:underline">
+        ← Back
+      </Link>
       <h1 className="text-3xl font-bold">
         {article.title}
       </h1>
