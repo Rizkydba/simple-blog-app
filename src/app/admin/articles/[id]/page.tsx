@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import ArticleForm from "@/components/articles/ArticleForm";
 
 import { Article } from "@/types/article";
 import {
@@ -55,41 +56,14 @@ export default function EditArticlePage() {
     <div className="max-w-2xl space-y-6">
       <h1 className="text-2xl font-bold">Edit Article</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* TITLE */}
-        <div>
-          <label className="block mb-1">Title</label>
-
-          <input
-            type="text"
-            className="w-full border p-2 rounded-md"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-
-        {/* CONTENT */}
-        <div>
-          <label className="block mb-1">Content</label>
-
-          <textarea
-            className="w-full border p-2 rounded-md"
-            rows={6}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          />
-        </div>
-
-        {/* SUBMIT */}
-        <button
-          type="submit"
-          className="bg-black text-white px-4 py-2 rounded-md"
-        >
-          Update Article
-        </button>
-      </form>
+      <ArticleForm
+        title={title}
+        content={content}
+        onTitleChange={setTitle}
+        onContentChange={setContent}
+        onSubmit={handleSubmit}
+        submitLabel="Update Article"
+      />
     </div>
   );
 }
