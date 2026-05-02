@@ -6,6 +6,7 @@ import { Article } from "@/types/article";
 import Link from "next/link";
 import { stripHtml } from "@/lib/utils";
 import Image from "next/image";
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function ArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -111,7 +112,7 @@ export default function ArticlesPage() {
                         {/* TITLE */}
                         <Link
                         href={`/articles/${article.slug}`}
-                        className="inline-block text-sm text-blue-600"
+                        className="inline-block text-sm text-black hover:text-[#0000aa]"
                         >
                         <h2 className="text-xl font-semibold line-clamp-2">
                         {article.title}
@@ -126,9 +127,9 @@ export default function ArticlesPage() {
 
                     <Link
                     href={`/articles/${article.slug}`}
-                    className="inline-block text-sm text-blue-600 hover:underline"
+                    className="group inline-flex flex-row items-center inline-block text-sm text-[#0000aa]"
                     >
-                    Read More →
+                    Read More <IoIosArrowForward className="transition-all duration-300 group-hover:ml-2"/>
                     </Link>
                 </div>
             </div>

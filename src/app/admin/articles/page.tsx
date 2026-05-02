@@ -142,7 +142,7 @@ export default function AdminArticlesPage() {
 
             <tbody>
               {paginatedArticles.map((article) => (
-                <tr key={article.id} className="text-sm hover:bg-gray-50">
+                <tr key={article.id} className="text-sm hover:bg-[#d3dde8]">
                   <td className="p-3 border">
                         <Link
                             href={`/admin/articles/${article.id}`}
