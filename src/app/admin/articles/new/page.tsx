@@ -34,7 +34,7 @@ export default function CreateArticlePage() {
   };
 
   return (
-    <div className="flex flex-col gap-8 pt-8 pb-20 px-4 md:px-8 lg:px-[0px]">
+    <div className="flex flex-col gap-8 pt-8 pb-20">
         <div className="flex flex-row flex-nowrap justify-between">
             <h1 className="text-2xl font-bold">Add New Article</h1>
             <Link

@@ -16,13 +16,13 @@ export default function ArticlesPage() {
   }, []);
 
   return (
-    <div className="space-y-6 py-14">
+    <div className="space-y-6 pt-8 pb-20">
       <h1 className="text-2xl font-bold">Articles</h1>
 
       {articles.length === 0 ? (
         <p className="text-gray-500">No articles yet.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {articles.map((article) => (
             <div key={article.id} className="grid grid-flow-col grid-rows-2 overflow-hidden border rounded-xl hover:shadow-md transition bg-white">
               {/* THUMBNAIL */}

@@ -59,7 +59,7 @@ export default function AdminArticlesPage() {
     );
 
   return (
-    <div className="space-y-6 pt-8 pb-14 px-4 md:px-8 lg:px-[0px]">
+    <div className="space-y-6 pt-8 pb-14">
       {/* HEADER */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Manage Articles</h1>
@@ -115,7 +115,7 @@ export default function AdminArticlesPage() {
             </div>
 
          {/* TABEL */}
-          <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
+          <table className="w-full border border-gray-200">
             <thead className="bg-gray-50 text-left text-sm">
               <tr>
                 <th className="p-3 border">Articels Title</th>
