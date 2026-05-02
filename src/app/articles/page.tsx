@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { getArticles } from "@/services/article.service";
 import { Article } from "@/types/article";
 import Link from "next/link";
-import { formatDate } from "@/lib/utils";
+import { formatDate, stripHtml } from "@/lib/utils";
+import Image from "next/image";
 
 export default function ArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -15,36 +16,59 @@ export default function ArticlesPage() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 py-14">
       <h1 className="text-2xl font-bold">Articles</h1>
 
       {articles.length === 0 ? (
         <p className="text-gray-500">No articles yet.</p>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article) => (
-            <div
-              key={article.id}
-              className="border p-4 rounded-lg space-y-2 hover:shadow-sm transition"
-            >
-              <h2 className="text-xl font-semibold">
-                {article.title}
-              </h2>
+            <div key={article.id} className="border rounded-xl overflow-hidden hover:shadow-md transition bg-white">
+              {/* THUMBNAIL */}
+                {article.thumbnail && (
+                    <div className="relative w-full h-[200px]">
+                        <Link
+                        href={`/articles/${article.slug}`}
+                        className="inline-block text-sm text-blue-600"
+                        >
+                            <Image
+                                src={article.thumbnail}
+                                alt={article.title}
+                                fill
+                                className="object-cover"
+                                unoptimized
+                            />
+                        </Link>
+                    </div>
+                )}
 
-              <p className="text-gray-500 text-sm">
-                {formatDate(article.createdAt)}
-              </p>
+              {/* CONTENT */}
+                <div className="p-4 space-y-3">
+                    <p className="text-sm text-gray-500">
+                    {formatDate(article.createdAt)}
+                    </p>
 
-              <p className="text-gray-700 line-clamp-2">
-                {article.content}
-              </p>
+                    <Link
+                    href={`/articles/${article.slug}`}
+                    className="inline-block text-sm text-blue-600"
+                    >
+                    <h2 className="text-xl font-semibold line-clamp-2">
+                    {article.title}
+                    </h2>
+                    </Link>
 
-              <Link
-                href={`/articles/${article.slug}`}
-                className="text-blue-500 text-sm"
-              >
-                Read more →
-              </Link>
+                    <p className="text-gray-600 text-sm">
+                    {stripHtml(article.content).slice(0, 120)}...
+                    </p>
+
+                    <Link
+                    href={`/articles/${article.slug}`}
+                    className="inline-block text-sm text-blue-600 hover:underline"
+                    >
+                    Read More →
+                    </Link>
+                </div>
             </div>
           ))}
         </div>

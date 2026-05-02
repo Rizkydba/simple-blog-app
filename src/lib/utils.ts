@@ -9,3 +9,6 @@ export const generateSlug = (title: string): string => {
 export const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString();
 };
+export const stripHtml = (html: string) => {
+  return html.replace(/<[^>]*>?/gm, "");
+};
