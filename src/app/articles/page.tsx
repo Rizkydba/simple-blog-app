@@ -1,8 +1,7 @@
 "use client"; //LocalStorage
 
-import { useEffect, useState } from "react";
-import { getArticles } from "@/services/article.service";
-import { Article } from "@/types/article";
+import { useState } from "react";
+import useArticles from "@/hooks/useArticles";
 import Link from "next/link";
 import { stripHtml } from "@/lib/utils";
 import Image from "next/image";
@@ -10,25 +9,13 @@ import { IoIosArrowForward } from "react-icons/io";
 import { motion } from "framer-motion";
 
 export default function ArticlesPage() {
-  const [articles, setArticles] = useState<Article[]>([]);
+    const { articles } = useArticles();
 
-  const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("");
 
-  const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
-  const articlesPerPage = 6;
-
-  useEffect(() => {
-  const data = getArticles();
-
-  const sorted = [...data].sort(
-    (a, b) =>
-      new Date(b.createdAt).getTime() -
-      new Date(a.createdAt).getTime()
-  );
-
-  setArticles(sorted);
-}, []);
+    const articlesPerPage = 6;
 
     const filteredArticles = articles.filter((article) => {
     const keyword = search.toLowerCase();

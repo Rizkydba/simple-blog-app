@@ -1,36 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
+import useArticles from "@/hooks/useArticles";
 import Link from "next/link";
 import Image from "next/image";
-
 import { ImRocket } from "react-icons/im";
 import { PiBridgeLight } from "react-icons/pi";
 import { LuCrown } from "react-icons/lu";
-
 import { IoIosArrowForward } from "react-icons/io";
-
-import { getArticles } from "@/services/article.service";
-import { Article } from "@/types/article";
-
 import { stripHtml } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
-  const [articles, setArticles] = useState<Article[]>([]);
-
-  useEffect(() => {
-    const data = getArticles();
-
-    const sorted = data.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() -
-        new Date(a.createdAt).getTime()
-    );
-
-    setArticles(sorted.slice(0, 3));
-  }, []);
+  const { articles } = useArticles();
 
   const visionCards = [
     {
@@ -234,7 +215,7 @@ export default function HomePage() {
 
           {/* GRID */}
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6">
-            {articles.map((article, index) => (
+            {articles.slice(0, 3).map((article, index) => (
               <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}

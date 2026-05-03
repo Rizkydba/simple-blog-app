@@ -1,42 +1,29 @@
 "use client"; //LocalStorage
 
-import { useEffect, useState } from "react";
-import { getArticles, deleteArticle } from "@/services/article.service";
-import { Article } from "@/types/article";
+import { useState } from "react";
+import useArticles from "@/hooks/useArticles";
+import { deleteArticle } from "@/services/article.service";
 import Link from "next/link";
 import { BsTrash3 } from "react-icons/bs";
 import { FaCirclePlus } from "react-icons/fa6";
 
 export default function AdminArticlesPage() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const {
+  articles,
+  refreshArticles,
+} = useArticles();
   const [search, setSearch] = useState("");
 
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const loadArticles = () => {
-  const data = getArticles();
-
-  const sorted = data.sort(
-    (a, b) =>
-      new Date(b.createdAt).getTime() -
-      new Date(a.createdAt).getTime()
-    );
-
-    setArticles(sorted);
-    };
-
-  useEffect(() => {
-    loadArticles();
-  }, []);
-
   const handleDelete = (id: string) => {
     const confirmDelete = confirm("Are you sure you want to delete this article?");
     if (!confirmDelete) return;
 
     deleteArticle(id);
-    loadArticles();
+    refreshArticles();
   };
 
   const filteredArticles = articles.filter((article) =>
