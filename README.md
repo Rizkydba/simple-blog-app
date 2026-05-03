@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simple Blog App
 
-## Getting Started
+🇺🇸 EN:
+A modern responsive blog and company profile web application built with Next.js App Router, TypeScript, Tailwind CSS, and LocalStorage based article management.
 
-First, run the development server:
+This project developed as a technical test assignment and evolved into a mini CMS/blog platform with rich content editing, responsive UI, and modern UX enhancements.
+
+🇮🇩 ID:
+Sebuah aplikasi web profil perusahaan dan blog responsif modern yang dibangun menggunakan Next.js App Router, TypeScript, Tailwind CSS, serta manajemen artikel berbasis LocalStorage.
+
+Proyek ini dikembangkan sebagai tugas uji teknis, dan dikembangkan menjadi platform blog/CMS mini dengan fitur penyuntingan konten yang lengkap, antarmuka responsif, dan peningkatan pengalaman pengguna (UX) modern.
+
+---
+
+## Features
+
+### Public Website
+- Company profile homepage
+- Responsive hero section with video background
+- Vision & mission cards
+- Latest articles section
+- Public article list page
+- Article detail page
+- Responsive article cards
+- Search articles by title and content
+- Pagination
+- Social share buttons
+- Responsive navbar with mobile sidebar menu
+- Smooth animations using Framer Motion
+
+### Admin Dashboard
+- Create article
+- Update article
+- Delete article
+- Article table with pagination
+- Search articles
+- Auto-generated slug preview
+- Thumbnail upload
+- Rich text editor using Tiptap
+- Inline image upload support inside article content
+
+---
+
+### Tech Stack
+
+- Next.js 16 (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Tiptap Editor
+- React Icons
+- LocalStorage (for article persistence)
+
+---
+
+### Project Structure
+
+```bash
+src/
+├── app/
+├── components/
+├── hooks/
+├── lib/
+├── services/
+├── types/
+```
+---
+
+#### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Rizkydba/simple-blog-app.git
+```
+
+Move into the project directory:
+
+```bash
+cd simple-blog-app
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+---
+
+#### Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+###### Notes
+🇺🇸 EN:
+- This project uses LocalStorage for article persistence.
+- Uploaded images are stored as Base64 strings.
+- No authentication system is implemented for the admin dashboard based on project scope decisions.
 
-To learn more about Next.js, take a look at the following resources:
+🇮🇩 ID:
+- Proyek ini menggunakan LocalStorage untuk penyimpanan data artikel secara persisten.
+- Gambar yang diunggah disimpan dalam bentuk string Base64.
+- Tidak ada sistem autentikasi yang diimplementasikan pada dashboard admin berdasarkan keputusan cakupan (scope) proyek.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Author
+Developed by Rizkydba.
