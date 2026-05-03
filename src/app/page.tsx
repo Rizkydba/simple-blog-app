@@ -99,7 +99,7 @@ export default function HomePage() {
 
       {/* ABOUT */}
       <section>
-        <div className="max-w-6xl px-4 md:px-6 py-20 space-y-4 mx-auto">
+        <div className="max-w-6xl px-4 md:px-6 py-10 xl:py-20 space-y-4 mx-auto">
           <motion.h2
           initial={{ opacity: 0, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function HomePage() {
       </section>
 
       {/* VISION */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 xl:py-20">
         <div className="space-y-10">
           <div className="space-y-3">
             <motion.h2
@@ -144,7 +144,7 @@ export default function HomePage() {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6">
             {visionCards.map((card, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 60 }}
@@ -176,8 +176,8 @@ export default function HomePage() {
       </section>
 
       {/* BLOCK CONTENT */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
-        <div className="grid grid-cols-[40%_auto] items-center gap-4">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 xl:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-[40%_auto] xl:grid-cols-[40%_auto] items-center gap-4">
           <div className="space-y-3">
             <motion.h2
             initial={{ opacity: 0, y: 0 }}
@@ -210,7 +210,7 @@ export default function HomePage() {
       </section>
 
       {/* ARTICLES */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10 xl:py-20">
         <div className="space-y-10">
           {/* HEADER */}
           <motion.div
@@ -233,7 +233,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6">
             {articles.map((article, index) => (
               <motion.div
                   initial={{ opacity: 0, y: 60 }}
