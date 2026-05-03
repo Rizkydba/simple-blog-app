@@ -116,27 +116,29 @@ http://localhost:3000
 
 ---
 
-## Preview
+## Author
+Developed by Rizkydba.
 
-## Homepage
+---
+
+
+## Sneakpeak
+## Preview Homepage
 ![Homepage Preview](./public/previews/project-gif-Homepage.gif)
 
 ---
 
-### Articles Page & Detail
+### Preview Articles Page & Article Detail Page
 ![Articles Preview](./public/previews/project-gif-ArticleList-ArticleDetail.gif)
 
 ---
 
-### Create New Article
+### Preview Create New Article
 ![Create Article Preview](./public/previews/project-gif-NewArticle.gif)
 
 ---
 
-### Update Article
+### Preview Update Article
 ![Update Article Preview](./public/previews/project-gif-UpdateArticle.gif)
 
 ---
-
-## Author
-Developed by Rizkydba.
