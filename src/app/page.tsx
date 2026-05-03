@@ -122,7 +122,7 @@ export default function HomePage() {
       </section>
 
       {/* VISION */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 py-10">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
         <div className="space-y-10">
           <div className="space-y-3">
             <motion.h2
@@ -171,6 +171,40 @@ export default function HomePage() {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BLOCK CONTENT */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
+        <div className="grid grid-cols-[40%_auto] items-center gap-4">
+          <div className="space-y-3">
+            <motion.h2
+            initial={{ opacity: 0, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4 }}
+            className="text-3xl font-bold">
+              Partners
+            </motion.h2>
+
+            <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-gray-600 pr-8">
+              Become the definitive global platform that empowers our co-creators to redefine every industry and improve the human experience through technology.
+            </motion.p>
+          </div>
+          <div>
+            <motion.img
+            initial={{ opacity: 0, y: 0, x: 20}}
+            whileInView={{ opacity: 1, y: 0, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            src="/images/Image-Generates.webp"
+            className="w-full h-full rounded-2xl"/>
           </div>
         </div>
       </section>
