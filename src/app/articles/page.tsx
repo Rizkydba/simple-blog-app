@@ -7,6 +7,7 @@ import Link from "next/link";
 import { stripHtml } from "@/lib/utils";
 import Image from "next/image";
 import { IoIosArrowForward } from "react-icons/io";
+import { motion } from "framer-motion";
 
 export default function ArticlesPage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -58,7 +59,12 @@ export default function ArticlesPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 xl:px-[0px] md:px-6 space-y-6 pt-24 pb-20">
-    <div className="flex flex-row justify-between items-center">
+    <motion.div
+    initial={{ opacity: 0, y: 0 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 1.2 }}
+    className="flex flex-row justify-between items-center">
       <h1 className="text-2xl font-bold">Articles</h1>
 
       {/* SEARCH */}
@@ -87,14 +93,23 @@ export default function ArticlesPage() {
             </button>
         )}
         </div>
-    </div>
+    </motion.div>
 
       {filteredArticles.length === 0 ? (
         <div className="w-full min-h-screen flex flex-col justify-center text-gray-500 text-center">No articles available.</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {paginatedArticles.map((article) => (
-            <div key={article.id} className="grid grid-flow-col grid-rows-2 overflow-hidden border rounded-xl hover:shadow-md transition bg-white">
+          {paginatedArticles.map((article, index) => (
+            <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+                  duration: 0.8,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+            }}
+            key={article.id} className="grid grid-flow-col grid-rows-2 overflow-hidden border rounded-xl hover:shadow-md transition-shadow bg-white">
               {/* THUMBNAIL */}
                 {article.thumbnail && (
                     <div className="relative w-full h-full">
@@ -139,12 +154,17 @@ export default function ArticlesPage() {
                     Read More <IoIosArrowForward className="transition-all duration-300 group-hover:ml-2"/>
                     </Link>
                 </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 pt-6">
+        <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="flex justify-center items-center gap-2 pt-6">
             {Array.from({ length: totalPages }).map((_, index) => {
             const page = index + 1;
 
@@ -162,7 +182,7 @@ export default function ArticlesPage() {
                 </button>
             );
             })}
-        </div>
+        </motion.div>
         )}
     </div>
   );

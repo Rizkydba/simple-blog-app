@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { HiOutlineMenu, HiX } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -44,11 +45,17 @@ export default function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <nav
-          className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      <motion.nav
+          initial={{ opacity: 0, y: -60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+              }}
+          className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
             isHomePage && !isScrolled
               ? "bg-transparent border-transparent"
-              : "bg-white border-b"
+              : "bg-white shadow-sm"
           }`}
         >
         <div className="max-w-6xl mx-auto h-16 px-4 xl:px-[0px] md:px-6 flex items-center justify-between">
@@ -97,7 +104,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* MOBILE OVERLAY */}
       {isOpen && (

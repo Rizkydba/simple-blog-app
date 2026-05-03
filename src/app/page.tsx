@@ -15,6 +15,7 @@ import { getArticles } from "@/services/article.service";
 import { Article } from "@/types/article";
 
 import { stripHtml } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -76,7 +77,14 @@ export default function HomePage() {
         {/* CONTENT */}
         <div className="relative z-10 h-full flex items-center">
           <div className="max-w-6xl mx-auto px-4 md:px-6 text-white">
-            <div className="inline-flex flex-col max-w-3xl space-y-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.4,
+                ease: "easeOut",
+              }}
+              className="inline-flex flex-col max-w-3xl space-y-6 text-center">
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 Empowering Disruptors to Scale Beyond Horizon
               </h1>
@@ -84,7 +92,7 @@ export default function HomePage() {
               <p className="w-xs text-lg text-gray-200">
                 We provide the momentum to propel you to lead the next era of innovation.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -92,14 +100,24 @@ export default function HomePage() {
       {/* ABOUT */}
       <section>
         <div className="max-w-6xl px-4 md:px-6 py-20 space-y-4 mx-auto">
-          <h2 className="text-3xl font-bold">
+          <motion.h2
+          initial={{ opacity: 0, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.4 }}
+          className="text-3xl font-bold">
             About Us
-          </h2>
+          </motion.h2>
 
-          <p className="text-gray-600 leading-relaxed">
+          <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-gray-600 leading-relaxed">
             we believe that the next era of human progress is being built by those who dare to challenge the status quo. We are a venture capital firm dedicated to identifying, funding, and scaling the world's most ambitious disruptors. 
             While capital is the fuel, our partnership is the engine. We bridge the gap between groundbreaking innovation and global market dominance by providing founders with more than just financial support—we provide a launchpad of strategic mentorship, an elite global network, and the operational momentum required to scale beyond the horizon.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -107,20 +125,38 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 md:px-6 py-10">
         <div className="space-y-10">
           <div className="space-y-3">
-            <h2 className="text-3xl font-bold">
+            <motion.h2
+            initial={{ opacity: 0, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4 }}
+            className="text-3xl font-bold">
               Vision & Mission
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-600">
+            <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-gray-600">
               Become the definitive global platform that empowers the architects of the future to redefine every industry and improve the human experience through technology.
-            </p>
+            </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {visionCards.map((card, index) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.8,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
                 key={index}
-                className="border rounded-2xl p-6 space-y-4 hover:shadow-md transition"
+                className="border rounded-2xl p-6 space-y-4 hover:shadow-md hover:shadow-[#FF7518] transition-shadow"
               >
                 <div className="text-3xl">
                   {card.icon}
@@ -133,7 +169,7 @@ export default function HomePage() {
                 <p className="text-gray-600">
                   {card.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -143,7 +179,12 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 md:px-6 py-20">
         <div className="space-y-10">
           {/* HEADER */}
-          <div className="flex items-center justify-between gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4 }}
+            className="flex items-center justify-between gap-4">
             <h2 className="text-3xl font-bold">
               Latest Articles
             </h2>
@@ -155,14 +196,22 @@ export default function HomePage() {
               Explore More
               <IoIosArrowForward />
             </Link>
-          </div>
+          </motion.div>
 
           {/* GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {articles.map((article) => (
-              <div
+            {articles.map((article, index) => (
+              <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: "easeOut",
+                  }}
                 key={article.id}
-                className="grid grid-flow-col grid-rows-2 overflow-hidden border rounded-xl hover:shadow-md transition bg-white"
+                className="grid grid-flow-col grid-rows-2 overflow-hidden border rounded-xl hover:shadow-md transition-shadow bg-white"
               >
                 {/* THUMBNAIL */}
                 {article.thumbnail && (
@@ -209,7 +258,7 @@ export default function HomePage() {
                     <IoIosArrowForward className="transition-all duration-300 group-hover:ml-2" />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
