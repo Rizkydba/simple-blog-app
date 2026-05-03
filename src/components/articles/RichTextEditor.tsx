@@ -3,6 +3,7 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
+import { useEffect,useRef } from "react";
 
 type RichTextEditorProps = {
   content: string;
@@ -13,14 +14,17 @@ export default function RichTextEditor({
   content,
   onChange,
 }: RichTextEditorProps) {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
       StarterKit,
-      Image,
+      Image.configure({
+        allowBase64: true,
+      }),
     ],
 
-    content,
+    content:"",
 
     editorProps: {
       attributes: {
@@ -34,15 +38,38 @@ export default function RichTextEditor({
     },
   });
 
-  const addImage = () => {
-    const url = window.prompt("Enter image URL");
-
-    if (url) {
-      editor?.chain().focus().setImage({ src: url }).run();
-    }
-  };
+  useEffect(() => {
+  if (editor && content !== editor.getHTML()) {
+    editor.commands.setContent(content, {
+      emitUpdate: false,
+    });
+  }
+}, [content, editor]);
 
   if (!editor) return null;
+  
+
+  const handleImageUpload = (
+    e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+    const file = e.target.files?.[0];
+
+    if (!file || !editor) return;
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+        editor
+        .chain()
+        .focus()
+        .setImage({
+            src: reader.result as string,
+        })
+        .run();
+    };
+
+    reader.readAsDataURL(file);
+    };
 
   return (
     <div className="space-y-2">
@@ -69,12 +96,19 @@ export default function RichTextEditor({
         </button>
 
         <button
-          type="button"
-          onClick={addImage}
-          className="border px-3 py-1 rounded-md text-sm"
-        >
-          Add Image
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="border px-3 py-1 rounded">
+            Insert Image
         </button>
+
+        <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageUpload}
+        />
       </div>
 
       {/* EDITOR */}
